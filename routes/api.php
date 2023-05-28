@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DatabaseBarangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('dataBarang');
+// Route::GET('tiketing/', [TiketController::class, 'index'])->name('showtickets');

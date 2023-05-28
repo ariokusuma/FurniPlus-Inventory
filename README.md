@@ -12,7 +12,7 @@ FurniPlus merupakan sebuah Project E-Commerce yangg dibangun menggunakan framewo
 *FurniPlus Microservice*
 | No  |      Microservice           |    Tim    | Deskripsi                                        |
 | --- | --------------------------- | --------- | ------------------------------------------------- |
-| 1   | ***Inventory*** `Repo ini` <img width=120/> |  **`Tim 1`  <img width=80/>**| Service yang bertugas untuk mengelola bagian Gudang seperti stok barang, dan melakukan pengemasan barang terhadap permintaan dari `E-Commerce`           |
+| 1   | ***Inventory*** `Repo ini` <img width=120/> |<img width=50/>`Tim 1`  <img width=50/>| Service yang bertugas untuk mengelola bagian Gudang seperti stok barang, dan melakukan pengemasan barang terhadap permintaan dari `E-Commerce`           |
 | 2   | ***E-Commerce***            |  `Tim 5`  | Service yang bertugas untuk mengelola interaksi dengan pengguna pada Aplikasi FurniPlus, dan mengirimkan permintaan pengemasan barang kepada `Inventory` |
 | 3   | ***Shipping***              |  `Tim 7`  | Service yang bertugas untuk mengelola pengiriman barang seperti mengurus paket dari `Inventory` untuk  dikirimkan kepada pengguna                        |
 

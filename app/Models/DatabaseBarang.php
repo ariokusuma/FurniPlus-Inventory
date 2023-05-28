@@ -10,6 +10,7 @@ class DatabaseBarang extends Model
     use HasFactory;
 
     protected $table ='database_barang';
+    protected $primaryKey = 'id_barang';
     protected $guarded =[];
 
     // public $timestamps = true;

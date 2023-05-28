@@ -56,11 +56,11 @@ FurniPlus merupakan sebuah Project E-Commerce yangg dibangun menggunakan framewo
 
 - Clone this Project
 ```bash
-git clone https://github.com/ariokusuma/tugas-api-eai.git
+git clone https://github.com/ariokusuma/FurniPlus-Inventory.git
 ```
 
 - Modify the .env file <br>
-*Configure the .env file according to Your local Database System*
+*Configure the `.env` file according to Your local Database System*
 ```bash
 DB_PORT= <your_mysql_port>
 DB_DATABASE= <your_database_name>
@@ -79,6 +79,11 @@ php artisan key:generate
 - Migrate Database
 ```bash
 php artisan migrate
+```
+
+- Run Laravel Seeder
+```bash
+php artisan db:seed --class=DatabaseBarang
 ```
 
 - Run the laravel server

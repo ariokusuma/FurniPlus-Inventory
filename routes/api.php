@@ -20,5 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+// Buat E-Commerce
 Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('dataBarang');
-// Route::GET('tiketing/', [TiketController::class, 'index'])->name('showtickets');
+
+Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang');
+
+

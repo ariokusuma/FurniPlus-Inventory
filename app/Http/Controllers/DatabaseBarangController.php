@@ -19,6 +19,14 @@ class DatabaseBarangController extends Controller
         ]);
     }
 
+    public function showbyid($id_barang)
+    {
+        $id_barang = DatabaseBarang::findorfail($id_barang);
+        if ($id_barang) {
+            return response()->json($id_barang);
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */

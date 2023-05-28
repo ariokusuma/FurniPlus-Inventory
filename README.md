@@ -10,9 +10,9 @@ Tugas ini dibuat untuk memenuhi Tugas Akhir  Semester (UAS) dari mata kuliah [In
 ## About the Project
 FurniPlus merupakan sebuah Project E-Commerce yangg dibangun menggunakan framework [Laravel](https://laravel.com/) dengan Arsitektur Microservices yang didalamnya memiliki 3 Service yang saling terhubung melalui API.  Kami selaku `Tim 1` Bertugas untuk mengerjakan ***Inventory*** dan project ini dikerjakan bersama dengan `Tim 5` dan `Tim 7`. Berikut merupakan detail Pembagian Pengerjaan Microservices
 *FurniPlus Microservice*
-| No  |      Microservice           |    Tim    | <div style="width:200px">Deskripsi</div>                                         |
+| No  |      Microservice           |    Tim    | Deskripsi                                        |
 | --- | --------------------------- | --------- | ------------------------------------------------- |
-| 1   | ***Inventory*** `Repo ini`  |  `Tim 1`  | Service yang bertugas untuk mengelola bagian Gudang seperti stok barang, dan melakukan pengemasan barang terhadap permintaan dari `E-Commerce`           |
+| 1   | ***Inventory*** `Repo ini`<img width=100/>|  `Tim 1` <img width=100/> | Service yang bertugas untuk mengelola bagian Gudang seperti stok barang, dan melakukan pengemasan barang terhadap permintaan dari `E-Commerce`           |
 | 2   | ***E-Commerce***            |  `Tim 5`  | Service yang bertugas untuk mengelola interaksi dengan pengguna pada Aplikasi FurniPlus, dan mengirimkan permintaan pengemasan barang kepada `Inventory` |
 | 3   | ***Shipping***              |  `Tim 7`  | Service yang bertugas untuk mengelola pengiriman barang seperti mengurus paket dari `Inventory` untuk  dikirimkan kepada pengguna                        |
 

@@ -7,13 +7,38 @@ use App\Models\DatabasePesanan;
 
 class DatabasePesananController extends Controller
 {
-
-    public function showbyid($id_pesanan)
+    public function index()
     {
-        $id_pesanan = DatabasePesanan::findorfail($id_pesanan);
-        if ($id_pesanan) {
-            return response()->json($id_pesanan);
-        }
+        //
+        $database_pesanan = DatabasePesanan::paginate(10);
+        return response()->json([
+            'data_pesanan' => $database_pesanan
+        ]);
+    }
+    public function store(Request $request)
+    {
+        //
+        $pesanan = DatabasePesanan::create([
+            'id_pesanan' => $request->id_pesanan,
+            'id_barang' => $request->id_barang,
+            'id_user' => $request->id_user,
+            'nama_pengguna' => $request->nama_pengguna,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'jumlah_pesanan' => $request->jumlah_pesanan,
+            'total_harga' => $request->total_harga,
+            'status' => $request->status,
+            'resi' => $request->resi,
+        ]);
+        return response()->json([
+            'data_pesanan' => $pesanan
+        ]);
+    }
+    public function show(DatabasePesanan $pesanan)
+    {
+        return response()->json([
+            'data_pesanan' => $pesanan
+        ]);
     }
 
     /**
@@ -24,7 +49,7 @@ class DatabasePesananController extends Controller
         $pesanan = DatabasePesanan::findorfail($id_pesanan);
         $pesanan ->update($request->all());
         return $pesanan;
-        
+
     }
 
 }

@@ -40,13 +40,6 @@ class DatabasePesananController extends Controller
             'data_pesanan' => $pesanan
         ]);
     }
-    public function showbyid($id_pesanan)
-    {
-        $id_pesanan = DatabasePesanan::findorfail($id_pesanan);
-        if ($id_pesanan) {
-            return response()->json($id_pesanan);
-        }
-    }
 
     /**
      * Update the specified resource in storage.

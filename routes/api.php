@@ -25,4 +25,6 @@ Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('da
 
 Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang');
 
+Route::GET('/data-pesanan', [DatabasePesananController::class, 'index'])->name('dataPesanan');
 
+Route::GET('/data-pesanan/{id_pesanan}', [DatabasePesananController::class, 'showbyid'])->name('detilPesanan');

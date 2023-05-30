@@ -4,6 +4,7 @@ use App\Http\Controllers\DatabaseBarangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,5 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('dataBarang');
 
 Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang');
+
+//endpoint nomor 7
+Route::PUT('pesanan/update/{id_pesanan}', [App\Http\Controllers\DatabasePesananController::class, 'update']);
 
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\DatabaseBarangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,6 +26,8 @@ Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('da
 
 Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang');
 
-Route::GET('/data-pesanan', [DatabasePesananController::class, 'index'])->name('dataPesanan');
+//endpoint nomor 7
+Route::PUT('pesanan/update/{id_pesanan}', [App\Http\Controllers\DatabasePesananController::class, 'update']);
+
 
 Route::GET('/data-pesanan/{id_pesanan}', [DatabasePesananController::class, 'showbyid'])->name('detilPesanan');

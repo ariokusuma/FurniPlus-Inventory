@@ -9,7 +9,7 @@ class DatabasePengemasanController extends Controller
 {
     public function index()
     {
-        $pengemasan = DatabasePengemasan::where('status', 'siap dikirim')->get();
+        $pengemasan = DatabasePengemasan::where('status', 'siap dikirim dan diserahkan kepada pihak perngiriman')->get();
         return $pengemasan;
     }
 }

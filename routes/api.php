@@ -21,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+/*
+|--------------------------------------------------------------------------
+========================== Buat E-Commerce =========================
+|--------------------------------------------------------------------------
+*/
 
 // Buat E-Commerce
 Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('dataBarang'); // No 1
@@ -31,13 +35,17 @@ Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'update
 
 
 
-
+/*
+|--------------------------------------------------------------------------
+========================== Event Details =========================
+|--------------------------------------------------------------------------
+*/
 //endpoint nomor 7
 Route::apiResource('pesanan', DatabasePesananController::class);
 
 Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'update']);
 
 
-Route::GET('/data-pesanan/{id_pesanan}', [DatabasePesananController::class, 'showbyid'])->name('detilPesanan');
+Route::GET('/data-pesanan/{id_pesanan}', [DatabasePesananController::class, 'showbyid'])->name('detilPesanan'); //No 7
 
-Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']);
+Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']); //No 8

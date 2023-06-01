@@ -41,6 +41,18 @@ class DatabaseBarangController extends Controller
     public function store(Request $request)
     {
         //
+        $data_barang = DatabaseBarang::create([
+            'id_barang' => $request->id_barang,
+            'nama_barang' => $request->nama_barang,
+            'foto_barang' => $request->foto_barang,
+            'deskripsi_barang' => $request->deskripsi_barang,
+            'stok_barang' => $request->stok_barang,
+            'harga_barang' => $request->harga_barang,
+        ]);
+        return response()->json([
+            'data' => $data_barang
+        ]);
+
     }
 
     /**
@@ -62,9 +74,31 @@ class DatabaseBarangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, DatabaseBarang $database_barang)
+    public function update(Request $request, $id_barang)
     {
-        //
+        $id_barang = DatabaseBarang::findorfail($id_barang);
+
+        $validasiData = $request->validate([
+            'id_barang' => 'required',
+            'nama_barang' => 'required',
+            'foto_barang' => 'required',
+            'deskripsi_barang' => 'required',
+            'stok_barang' => 'required',
+            'harga_barang' => 'required',
+        ]);
+
+        $id_barang->id_barang = $validasiData['id_barang'];
+        $id_barang->nama_barang = $validasiData['nama_barang'];
+        $id_barang->foto_barang = $validasiData['foto_barang'];
+        $id_barang->deskripsi_barang = $validasiData['deskripsi_barang'];
+        $id_barang->stok_barang = $validasiData['stok_barang'];
+        $id_barang->harga_barang = $validasiData['harga_barang'];
+
+        $id_barang->save();
+
+        return response()->json([
+            'data' => $id_barang
+        ]);
     }
 
     /**

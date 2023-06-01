@@ -21,7 +21,7 @@ FurniPlus merupakan sebuah Project E-Commerce yangg dibangun menggunakan framewo
 
 *Endpoint Tiket*
 
-| No  | Ticket Endpoint             | Method | Deskripsi                                                      |   
+| No  | Ticket Endpoint             | Method | Deskripsi                                                      |   Status |
 | --- | --------------------------- | :------: | -----------------------------------------------------------  | :------: |
 |**-**|**------- E-Commerce -------**|**------**| **---------------------- E-Commerce ----------------------**|**------**|   
 | 1   | `data-barang/`               |  `GET`   | Menampilkan Seluruh Data Barang dari `Inventory`            |  &check; |  <!-- buat E-Commerce(data barang) -->

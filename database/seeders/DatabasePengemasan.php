@@ -11,7 +11,7 @@ class DatabasePengemasan extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
         DB::table('database_pengemasan')->insert([
             [
@@ -21,8 +21,8 @@ class DatabasePengemasan extends Seeder
                 'alamat'=>'Sukapura',
                 'no_hp'=>123,
                 'jumlah_pesanan'=>3,
-                'status'=>'siap dikirim',
-                'resi'=>12345678,
+                'status'=>'siap dikirim dan diserahkan kepada pihak perngiriman',
+                'resi'=>null,
                 'nama_barang'=>'kursi',
                 'deskripsi'=>'Kursi kakinya ada enam'
             ],
@@ -33,8 +33,8 @@ class DatabasePengemasan extends Seeder
                 'alamat'=>'Sukpur',
                 'no_hp'=>234,
                 'jumlah_pesanan'=>2,
-                'status'=>'siap dikirim',
-                'resi'=>12345679,
+                'status'=>'siap dikirim dan diserahkan kepada pihak perngiriman',
+                'resi'=>null,
                 'nama_barang'=>'meja',
                 'deskripsi'=>'meja kakinya ada empat'
             ]

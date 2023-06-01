@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('database_pengemasan', function (Blueprint $table) {
             $table->id('id_pengemasan');
@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('no_hp');
             $table->integer('jumlah_pesanan');
             $table->string('status');
-            $table->integer('resi');
+            $table->integer('resi')->nullable();
             $table->string('nama_barang');
             $table->string('deskripsi');
             $table->timestamps();
@@ -30,7 +30,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('database_pengemasan');
     }

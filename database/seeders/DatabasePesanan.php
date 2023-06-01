@@ -10,7 +10,7 @@ class DatabasePesanan extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
         DB::table('database_pesanan')->insert([
                 [
@@ -22,7 +22,7 @@ class DatabasePesanan extends Seeder
                     'jumlah_pesanan'=>3,
                     'total_harga'=>50000,
                     'status'=>'memintan barang',
-                    'resi'=>12345678,
+                    'resi'=>null,
                 ],
                 [
                     'id_barang'=>2,
@@ -33,7 +33,7 @@ class DatabasePesanan extends Seeder
                     'jumlah_pesanan'=>3,
                     'total_harga'=>50000,
                     'status'=>'memesan barang',
-                    'resi'=>12345673,
+                    'resi'=>null,
                 ],
             ]);
     }

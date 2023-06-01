@@ -34,3 +34,5 @@ Route::PUT('pesanan/update/{id_pesanan}', [App\Http\Controllers\DatabasePesananC
 
 
 Route::GET('/data-pesanan/{id_pesanan}', [DatabasePesananController::class, 'showbyid'])->name('detilPesanan');
+
+Route::GET('pengiriman/kirim', [App\Http\Controllers\DatabasePengemasanController::class, 'index']);

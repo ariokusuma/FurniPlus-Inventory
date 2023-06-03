@@ -53,3 +53,4 @@ Route::GET('/data-pesanan/{id_pesanan}', [DatabasePesananController::class, 'sho
 |--------------------------------------------------------------------------
 */
 Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']); //No 8
+Route::GET('pengiriman/kirim/{id}', [DatabasePengemasanController::class, 'pengiriman']);

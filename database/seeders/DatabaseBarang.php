@@ -29,6 +29,13 @@ class DatabaseBarang extends Seeder
                 'stok_barang' => 5,
                 'harga_barang' => 55.000,
             ],
+            [
+                'nama_barang' => 'kursi gaming',
+                'foto_barang' => 'kursi_gaming.jpg',
+                'deskripsi_barang' => 'kursi buat ngegame',
+                'stok_barang' => 10,
+                'harga_barang' => 550.000,
+            ],
         ]);
     }
 }

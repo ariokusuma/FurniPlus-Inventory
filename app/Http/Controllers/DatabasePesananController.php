@@ -37,8 +37,9 @@ class DatabasePesananController extends Controller
     public function show(DatabasePesanan $pesanan)
     {
         return response()->json([
+            'message' => 'Success',
             'data_pesanan' => $pesanan
-        ]);
+        ], 200);
     }
 
     /**

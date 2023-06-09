@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DatabasePesanan;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Validator;
 
 class DatabasePesananController extends Controller
 {
@@ -46,9 +48,35 @@ class DatabasePesananController extends Controller
      */
     public function update(Request $request, $id_pesanan)
     {
-        $pesanan = DatabasePesanan::findorfail($id_pesanan);
-        $pesanan ->update($request->all());
-        return $pesanan;
+        $pesanan = DatabasePesanan::find($id_pesanan);
+        if ($pesanan){
+            $validator = Validator::make($request->all(), [
+                'id_barang'=>'integer',
+                'id_user'=>'integer',
+                'nama_pengguna'=>'string',
+                'alamat'=>'string',
+                'no_hp'=>'integer',
+                'jumlah_pesanan'=>'integer', 
+                'total_harga'=>'integer',
+                'status'=>'string'
+            ]);
+            if ($validator->fails()){
+                return '400 = Bad Request';
+
+            }
+            else{
+
+                $pesanan = DatabasePesanan::find($id_pesanan);
+                $pesanan ->update($request->all());
+                return response()->json([
+                    'message'=>'200 = Ok',
+                    'response'=>$pesanan
+                ]);
+            }
+
+        } else {
+            return "404 = Not Found";
+        }
 
     }
 

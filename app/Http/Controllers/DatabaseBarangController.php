@@ -74,7 +74,7 @@ class DatabaseBarangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id_barang)
+    public function updateBarang(Request $request, $id_barang)
     {
         $id_barang = DatabaseBarang::findorfail($id_barang);
 

@@ -10,7 +10,15 @@ class DatabasePengemasanController extends Controller
     public function index()
     {
         $pengemasan = DatabasePengemasan::where('status', 'siap dikirim dan diserahkan kepada pihak perngiriman')->get();
-        return $pengemasan;
+        if ($pengemasan){
+            return response()->json([
+                'message'=>'200 = Ok',
+                'response'=>$pengemasan
+            ]);
+        }
+        else{
+            return "404 = Not Found";
+        }
     }
     public function pengiriman($id_pengemasan)
     {

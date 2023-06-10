@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use ParseError;
+use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -32,7 +33,5 @@ class Handler extends ExceptionHandler
         $this->renderable(function (ParseError $e) {
             return response()->json(['message' => 'Syntax error'], 500);
         });
-
-        
     }
 }

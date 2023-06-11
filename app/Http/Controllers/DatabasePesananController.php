@@ -51,27 +51,20 @@ class DatabasePesananController extends Controller
     {
         $pesanan = DatabasePesanan::find($id_pesanan);
         if ($pesanan){
-            $validator = Validator::make($request->all(), [
-                'id_barang'=>'integer',
-                'id_user'=>'integer',
-                'nama_pengguna'=>'string',
-                'alamat'=>'string',
-                'no_hp'=>'integer',
-                'jumlah_pesanan'=>'integer', 
-                'total_harga'=>'integer',
-                'status'=>'string'
+
+            $validator = Validator::make($request->only(['id_barang', 'id_user', 'status']), [
+                'id_barang'=>'integer|required',
+                'id_user'=>'integer|required',
+                'status'=>'string|required'
             ]);
             if ($validator->fails()){
                 return '400 = Bad Request';
-
             }
             else{
-
-                $pesanan = DatabasePesanan::find($id_pesanan);
-                $pesanan ->update($request->all());
+                $pesanan -> update($request->only(['status']));
                 return response()->json([
                     'message'=>'200 = Ok',
-                    'response'=>$pesanan
+                    'response'=> $pesanan->only(['id_barang', 'id_user', 'status'])
                 ]);
             }
 

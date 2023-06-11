@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('dataBarang'); // No 1
 Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang'); // No 2
 Route::POST('/data-barang/add/', [DatabaseBarangController::class, 'store'])->name('detilbarang'); // No 3
-Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'update'])->name('detilbarang'); // No 4
+Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'updateBarang'])->name('detilbarang'); // No 4
 
 
 

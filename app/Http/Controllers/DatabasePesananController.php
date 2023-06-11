@@ -51,6 +51,7 @@ class DatabasePesananController extends Controller
     {
         $pesanan = DatabasePesanan::find($id_pesanan);
         if ($pesanan){
+
             $validator = Validator::make($request->only(['id_barang', 'id_user', 'status']), [
                 'id_barang'=>'integer|required',
                 'id_user'=>'integer|required',

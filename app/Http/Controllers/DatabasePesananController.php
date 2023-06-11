@@ -49,7 +49,7 @@ class DatabasePesananController extends Controller
      */
     public function update(Request $request, $id_pesanan)
     {
-        $pesanan = DatabasePesanan::find($id_pesanan);
+        $pesanan = DatabasePesanan::findOrFail($id_pesanan);
         if ($pesanan){
 
             $validator = Validator::make($request->only(['id_barang', 'id_user', 'status']), [
@@ -58,7 +58,11 @@ class DatabasePesananController extends Controller
                 'status'=>'string|required'
             ]);
             if ($validator->fails()){
-                return '400 = Bad Request';
+                return response()->json([
+                    'message' => '400 = Bad Request',
+                    'error' => $validator->errors()
+                ], 400);
+                // return '400 = Bad Request';
             }
             else{
                 $pesanan -> update($request->only(['status']));

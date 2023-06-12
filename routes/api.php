@@ -32,7 +32,7 @@ Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('da
 Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang'); // No 2
 Route::POST('/data-barang/add/', [DatabaseBarangController::class, 'store'])->name('detilbarang'); // No 3
 Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'updateBarang'])->name('detilbarang'); // No 4
-
+Route::DELETE('/data-barang/delete/{id}', [DatabaseBarangController::class, 'destroy']);
 
 
 /*

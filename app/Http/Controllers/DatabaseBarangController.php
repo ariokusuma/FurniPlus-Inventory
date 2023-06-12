@@ -153,7 +153,25 @@ class DatabaseBarangController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(DatabaseBarang $database_barang)
-    {
-        //
+{
+    // Check if the data exists
+    if (!$database_barang) {
+        return response()->json([
+            'message' => 'Data not found.'
+        ], 404);
     }
+
+    // Get the data before deleting
+    $deletedData = $database_barang;
+
+    // Delete the data
+    $database_barang->delete();
+
+    return response()->json([
+        'code' => '200',
+        'message' => 'Data deleted successfully.',
+        'data' => $deletedData
+    ]);
+}
+
 }

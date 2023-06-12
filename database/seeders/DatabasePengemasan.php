@@ -15,7 +15,7 @@ class DatabasePengemasan extends Seeder
     {
         DB::table('database_pengemasan')->insert([
             [
-                'id_pengemasan'=>1,
+                'id_pengemasan'=>3,
                 'id_pesanan'=>1,
                 'nama_pengguna'=>'pawpaw',
                 'alamat'=>'Sukapura',
@@ -27,7 +27,7 @@ class DatabasePengemasan extends Seeder
                 'deskripsi'=>'Kursi kakinya ada enam'
             ],
             [
-                'id_pengemasan'=>2,
+                'id_pengemasan'=>4,
                 'id_pesanan'=>2,
                 'nama_pengguna'=>'lala',
                 'alamat'=>'Sukpur',

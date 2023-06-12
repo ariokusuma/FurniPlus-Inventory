@@ -41,7 +41,9 @@ Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'update
 |--------------------------------------------------------------------------
 */
 //endpoint nomor 7
-Route::apiResource('pesanan', DatabasePesananController::class); //No 5 & 6
+// Route::apiResource('pesanan', DatabasePesananController::class); //No 5 & 6
+// Route::get('pesanan', DatabasePesananController::class, 'index'); //No 5 & 6
+Route::get('pesanan', [DatabasePesananController::class, 'index']);
 Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'update']); //No 7
 
 

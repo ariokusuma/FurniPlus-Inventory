@@ -4,19 +4,53 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DatabasePesanan;
+use GuzzleHttp\Client;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Http;
 
 class DatabasePesananController extends Controller
 {
-    public function index()
+    public function index ()
     {
         //
-        $database_pesanan = DatabasePesanan::paginate(10);
-        return response()->json([
-            'data_pesanan' => $database_pesanan
-        ]);
+        $client = new Client();
+        $getdata = $client->request('GET', 'http://furniplus.ecomm.test/api/data_pesanan');
+        $dataJson = json_decode($getdata->getBody()->getContents(), true);
+        // dd($dataJson);
+        // dd($dataJson);
+        $data = $dataJson['response'];
+        $order = 0;
+
+        foreach ($data as $item) {
+            DatabasePesanan::updateOrCreate([
+                'id_pesanan' => $data[$order]['id']
+            ],[
+                'id_pesanan' => $data[$order]['id'],
+                'id_barang' => $data[$order]['id_barang'],
+                'id_user' => $data[$order]['id_user'],
+                'nama_pengguna' => $data[$order]['nama_pengguna'],
+                'alamat' => $data[$order]['alamat'],
+                'no_hp' => $data[$order]['no_hp'],
+                'jumlah_pesanan' => $data[$order]['jumlah_pesanan'],
+                'total_harga' => $data[$order]['total_harga'],
+                'status' => $data[$order]['status'],
+                'resi' => $data[$order]['resi'],
+            ]);
+            $order += 1;
+        }
+        // dd($data);
+        // Looping
+        // foreach ($data as $data) {
+
+        // }
+
+        // $database_pesanan = DatabasePesanan::paginate(10);
+        // return response()->json([
+        //     'data_pesanan' => $database_pesanan
+        // ]);
     }
+
     public function store(Request $request)
     {
         //

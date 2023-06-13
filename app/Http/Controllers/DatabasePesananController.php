@@ -19,7 +19,7 @@ class DatabasePesananController extends Controller
     {
         //
         $client = new Client();
-        $getdata = $client->request('GET', 'http://127.0.0.1:8001/api/data_pesanan');
+        $getdata = $client->request('GET', 'http://furniplus.ecomm.test/api/data_pesanan');
         $dataJson = json_decode($getdata->getBody()->getContents(), true);
         // dd($dataJson);
         // dd($dataJson);
@@ -221,6 +221,21 @@ class DatabasePesananController extends Controller
             return "404 = Not Found";
         }
 
+    }
+
+    public function kirimbarang() {
+        $dataPesanan = DatabasePengemasan::all();
+        if ($dataPesanan->isEmpty()) {
+            return response()->json([
+                'message' => 'No data found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => '200',
+            'message' => 'Sukses',
+            'data_barang' => $dataPesanan
+        ], 200, [], JSON_PRETTY_PRINT);
     }
 
 }

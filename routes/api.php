@@ -4,6 +4,7 @@ use App\Http\Controllers\DatabaseBarangController;
 use App\Http\Controllers\DatabasePesananController;
 use App\Http\Controllers\DatabasePengemasanController;
 use App\Http\Controllers\DatabaseRefundController;
+use App\Http\Controllers\VendorBarangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +49,7 @@ Route::get('pesanan', [DatabasePesananController::class, 'fetch']); //fetch data
 Route::GET('pesanan/show', [DatabasePesananController::class, 'show']);
 Route::get('pesanan/show/{id}', [DatabasePesananController::class, 'showbyid']);
 Route::GET('updateStatus', [DatabasePesananController::class, 'updateStatus']);
-Route::GET('fill', [DatabasePesananController::class, 'fillNullData']);
+// Route::GET('fill', [DatabasePesananController::class, 'fillNullData']);
 
 // update data resi
 Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'update']); //No 7
@@ -64,8 +65,19 @@ Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']); 
 Route::GET('pengiriman/kirim/{id}', [DatabasePengemasanController::class, 'pengiriman']); //No 9
 
 
-
-
+/*
+|--------------------------------------------------------------------------
+========================== Refund =========================
+|--------------------------------------------------------------------------
+*/
 Route::get('refund', [DatabaseRefundController::class, 'fetch']); //fetch data
-Route::GET('refund/show', [DatabaseRefundController::class, 'show']);
+Route::GET('refund/show', [DatabaseRefundController::class, 'show']); //
 Route::get('refund/show/{id}', [DatabaseRefundController::class, 'showbyid']);
+
+
+/*
+|--------------------------------------------------------------------------
+========================== Vendor =========================
+|--------------------------------------------------------------------------
+*/
+Route::get('vendor', [VendorBarangController::class, 'fetch']); //fetch data

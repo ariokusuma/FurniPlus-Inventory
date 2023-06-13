@@ -105,6 +105,7 @@ class DatabasePesananController extends Controller
             $pengemasanData = DatabasePengemasan::whereNull('nama_barang')
                     ->whereNull('deskripsi')
                     ->get();
+            // dd($pengemasanData);
 
             if ($pengemasanData->isEmpty()) {
                 return response()->json([
@@ -117,6 +118,7 @@ class DatabasePesananController extends Controller
 
                 foreach ($pengemasanData as $data) {
                     $pesanan = DatabasePesanan::find($data->id_pesanan);
+                    dd($pesanan);
                     $barang = DatabaseBarang::find($pesanan->id_barang);
 
                     if ($pesanan && $barang) {
@@ -168,6 +170,7 @@ class DatabasePesananController extends Controller
     public function show()
     {
         $dataPesanan = DatabasePesanan::all();
+
             if ($dataPesanan->isEmpty()) {
                 return response()->json([
                     'message' => 'No data found'
@@ -185,7 +188,11 @@ class DatabasePesananController extends Controller
     {
         $id_barang = DatabasePesanan::findorfail($id_barang);
         if ($id_barang) {
-            return response()->json($id_barang);
+            return response()->json([
+                'code' => '200',
+                'message' => 'Sukses',
+                'data_barang' => $id_barang
+            ], 200, [], JSON_PRETTY_PRINT);
         }
     }
 

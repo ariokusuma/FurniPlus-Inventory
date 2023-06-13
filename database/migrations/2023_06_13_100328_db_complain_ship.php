@@ -13,19 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('database_refund');
-        Schema::create('database_refund', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_barang');
-            $table->unsignedBigInteger('id_user');
+        Schema::dropIfExists('db_refund_ship');
+
+        Schema::create('db_refund_ship', function (Blueprint $table) {
+            $table->id('id_refund');
+            $table->unsignedBigInteger('id');
             $table->string('nama_pengguna');
             $table->string('alamat');
-            $table->string('no_hp');
+            $table->integer('no_hp');
             $table->integer('jumlah_pesanan');
-            $table->integer('total_harga');
             $table->string('status');
-            $table->string('resi');
+            $table->integer('resi')->nullable();
+            $table->string('nama_barang')->nullable();;
             $table->string('alasan_refund');
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }

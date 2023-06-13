@@ -49,8 +49,6 @@ Route::GET('pesanan/show', [DatabasePesananController::class, 'show']);
 Route::get('pesanan/show/{id}', [DatabasePesananController::class, 'showbyid']);
 Route::GET('updateStatus', [DatabasePesananController::class, 'updateStatus']); //
 
-//Endpoint untuk Shipping
-Route::GET('kirim-barang', [DatabasePesananController::class, 'kirimbarang']); //
 
 // Route::GET('fill', [DatabasePesananController::class, 'fillNullData']);
 
@@ -64,12 +62,17 @@ Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'up
 ========================== Shipping =========================
 |--------------------------------------------------------------------------
 */
-Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']); //No 8
+//Endpoint untuk Shipping
+Route::GET('pengiriman/kirim', [DatabasePesananController::class, 'kirimbarang']); //
+
+// Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']); //No 8
 Route::GET('pengiriman/kirim/{id}', [DatabasePengemasanController::class, 'pengiriman']); //No 9
 
 
 
 
 Route::get('refund', [DatabaseRefundController::class, 'fetch']); //fetch data
-Route::GET('refund/show', [DatabaseRefundController::class, 'show']);
+Route::get('refund2', [DatabaseRefundController::class, 'fillNullData']); //fetch data
+Route::GET('refund/show', [DatabaseRefundController::class, 'show']); //show all data
 Route::get('refund/show/{id}', [DatabaseRefundController::class, 'showbyid']);
+Route::get('refundfix', [DatabaseRefundController::class, 'refundfix']); //copy data, null

@@ -28,10 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 */
 
 // Buat E-Commerce
-Route::GET('/data-barang', [DatabaseBarangController::class, 'index'])->name('dataBarang'); // No 1
-Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid'])->name('detilbarang'); // No 2
-Route::POST('/data-barang/add/', [DatabaseBarangController::class, 'store'])->name('detilbarang'); // No 3
-Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'updateBarang'])->name('detilbarang'); // No 4
+Route::GET('/data-barang', [DatabaseBarangController::class, 'index']); // No 1
+Route::GET('/data-barang/{id_barang}', [DatabaseBarangController::class, 'showbyid']); // No 2
+Route::POST('/data-barang/add/', [DatabaseBarangController::class, 'store']); // No 3
+Route::PUT('/data-barang/update/{id}', [DatabaseBarangController::class, 'updateBarang']); // No 4
 Route::DELETE('/data-barang/delete/{id}', [DatabaseBarangController::class, 'destroy']);
 
 

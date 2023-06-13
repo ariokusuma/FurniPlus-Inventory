@@ -12,11 +12,11 @@ return new class extends Migration
     public function up()
     {
         Schema::dropIfExists('database_pengemasan');
-        
+
         Schema::create('database_pengemasan', function (Blueprint $table) {
             $table->id('id_pengemasan');
             $table->unsignedBigInteger('id_pesanan');
-            $table->foreign('id_pesanan')->references('id_pesanan')->on('database_pesanan');
+            // $table->foreign('id_pesanan')->references('id_pesanan')->on('database_pesanan');
             $table->string('nama_pengguna');
             $table->string('alamat');
             $table->integer('no_hp');

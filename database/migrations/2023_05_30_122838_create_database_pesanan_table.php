@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('database_pesanan', function (Blueprint $table) {
             $table->id('id_pesanan');
             $table->unsignedBigInteger('id_barang');
-            $table->foreign('id_barang')->references('id_barang')->on('database_barang');
             $table->unsignedBigInteger('id_user');
             $table->string('nama_pengguna');
             $table->string('alamat');

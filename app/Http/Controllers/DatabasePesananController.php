@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Http;
 
 class DatabasePesananController extends Controller
 {
-    public function index ()
+    public function index () // /pesanan
     {
         //
         $client = new Client();
         $getdata = $client->request('GET', 'http://furniplus.ecomm.test/api/data_pesanan');
         $dataJson = json_decode($getdata->getBody()->getContents(), true);
-        dd($dataJson);
+        // dd($dataJson);
         // dd($dataJson);
         $data = $dataJson['response'];
         $order = 0;

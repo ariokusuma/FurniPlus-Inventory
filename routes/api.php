@@ -69,8 +69,11 @@ Route::GET('pengiriman/kirim', [DatabasePesananController::class, 'kirimbarang']
 Route::GET('pengiriman/kirim/{id}', [DatabasePengemasanController::class, 'pengiriman']); //No 9
 
 
-
-
+/*
+|--------------------------------------------------------------------------
+========================== Refund =========================
+|--------------------------------------------------------------------------
+*/
 Route::get('refund', [DatabaseRefundController::class, 'fetch']); //fetch data
 Route::get('refund2', [DatabaseRefundController::class, 'fillNullData']); //fetch data
 Route::GET('refund/show', [DatabaseRefundController::class, 'show']); //show all data
@@ -79,5 +82,12 @@ Route::get('refundfix', [DatabaseRefundController::class, 'refundfix']); //copy 
 
 
 Route::get('refund/data', [DatabaseRefundController::class, 'refundbarang']); //copy data, null
+
+/*
+|--------------------------------------------------------------------------
+========================== Vendor =========================
+|--------------------------------------------------------------------------
+*/
+Route::get('vendor', [VendorBarangController::class, 'fetch']); //fetch data
 
 

@@ -47,8 +47,12 @@ Route::DELETE('/data-barang/delete/{id}', [DatabaseBarangController::class, 'des
 Route::get('pesanan', [DatabasePesananController::class, 'fetch']); //fetch data
 Route::GET('pesanan/show', [DatabasePesananController::class, 'show']);
 Route::get('pesanan/show/{id}', [DatabasePesananController::class, 'showbyid']);
-Route::GET('updateStatus', [DatabasePesananController::class, 'updateStatus']);
-Route::GET('fill', [DatabasePesananController::class, 'fillNullData']);
+Route::GET('updateStatus', [DatabasePesananController::class, 'updateStatus']); //
+
+//Endpoint untuk Shipping
+Route::GET('kirim-barang', [DatabasePesananController::class, 'kirimbarang']); //
+
+// Route::GET('fill', [DatabasePesananController::class, 'fillNullData']);
 
 // update data resi
 Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'update']); //No 7

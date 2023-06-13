@@ -3,6 +3,7 @@
 use App\Http\Controllers\DatabaseBarangController;
 use App\Http\Controllers\DatabasePesananController;
 use App\Http\Controllers\DatabasePengemasanController;
+use App\Http\Controllers\DatabaseRefundController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -57,3 +58,10 @@ Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'up
 */
 Route::GET('pengiriman/kirim', [DatabasePengemasanController::class, 'index']); //No 8
 Route::GET('pengiriman/kirim/{id}', [DatabasePengemasanController::class, 'pengiriman']); //No 9
+
+
+
+
+Route::get('refund', [DatabaseRefundController::class, 'fetch']); //fetch data
+Route::GET('refund/show', [DatabaseRefundController::class, 'show']);
+Route::get('refund/show/{id}', [DatabaseRefundController::class, 'showbyid']);

@@ -39,16 +39,13 @@ class DatabasePesananController extends Controller
             ]);
             $order += 1;
         }
-        // dd($data);
-        // Looping
-        // foreach ($data as $data) {
 
-        // }
+        return response()->json([
+            'code' => '200',
+            'message' => 'data telah Sukses disimpan',
+            'response' => $data // Assuming $pengemasan variable is replaced with $data
+        ]);
 
-        // $database_pesanan = DatabasePesanan::paginate(10);
-        // return response()->json([
-        //     'data_pesanan' => $database_pesanan
-        // ]);
     }
 
     public function store(Request $request)

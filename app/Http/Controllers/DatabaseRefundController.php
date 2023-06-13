@@ -189,4 +189,20 @@ class DatabaseRefundController extends Controller
             ], 200, [], JSON_PRETTY_PRINT);
         }
     }
+
+    public function refundbarang(){
+        $dataPesanan = DatabaseRefund2::all();
+        // dd($dataPesanan);
+        if ($dataPesanan->isEmpty()) {
+            return response()->json([
+                'message' => 'No data found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => '200',
+            'message' => 'Sukses',
+            'data_barang' => $dataPesanan
+        ], 200, [], JSON_PRETTY_PRINT);
+    }
 }

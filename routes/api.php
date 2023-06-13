@@ -76,3 +76,8 @@ Route::get('refund2', [DatabaseRefundController::class, 'fillNullData']); //fetc
 Route::GET('refund/show', [DatabaseRefundController::class, 'show']); //show all data
 Route::get('refund/show/{id}', [DatabaseRefundController::class, 'showbyid']);
 Route::get('refundfix', [DatabaseRefundController::class, 'refundfix']); //copy data, null
+
+
+Route::get('refund/data', [DatabaseRefundController::class, 'refundbarang']); //copy data, null
+
+

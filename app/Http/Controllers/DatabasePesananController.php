@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use App\Models\DatabaseBarang;
 use App\Models\DatabasePesanan;
 use App\Models\DatabasePengemasan;
-use GuzzleHttp\Client;
-use Illuminate\Auth\Events\Validated;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class DatabasePesananController extends Controller
@@ -67,23 +68,82 @@ class DatabasePesananController extends Controller
                 DatabasePengemasan::create($data->toArray());
             }
 
+            $tabelHasil = DatabasePengemasan::all();
+
             return response()->json([
                 'code' => 200,
                 'message' => 'Data copied successfully',
+                'data' => $tabelHasil
 
             ], Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 
         } catch (QueryException $e) {
             return response()->json([
                 'message' => 'Database error',
+                'error' => $e->getMessage(),
 
                 ], Response::HTTP_INTERNAL_SERVER_ERROR, [], JSON_PRETTY_PRINT);
 
         } catch (\Exception $e) {
-            return response()->json(['message' => 'Server error'], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(['message' => 'Server error'], Response::HTTP_INTERNAL_SERVER_ERROR, [], JSON_PRETTY_PRINT);
+
+        } finally {
+            $tabelAkhir = $this->fillNullData(); //panggil fungsi fillNullData
+            $responseData = [
+                'updateStatusResult' => $tabelHasil,
+                'fillNullDataResult' => $tabelAkhir,
+            ];
+
+            return response()->json($responseData, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
         }
 
+
     }
+
+    public function fillNullData() {
+        try {
+            $pengemasanData = DatabasePengemasan::whereNull('nama_barang')
+                    ->whereNull('deskripsi')
+                    ->get();
+
+            if ($pengemasanData->isEmpty()) {
+                return response()->json([
+                    'code' => '200',
+                    'message' => 'Seluruh status data pengemasan telah diupdate',
+                    'data' => $pengemasanData,
+
+                ], Response::HTTP_NOT_FOUND, [], JSON_PRETTY_PRINT);
+            }
+
+                foreach ($pengemasanData as $data) {
+                    $pesanan = DatabasePesanan::find($data->id_pesanan);
+                    $barang = DatabaseBarang::find($pesanan->id_barang);
+
+                    if ($pesanan && $barang) {
+                        $data->status = 'paket diserahkan ke pengiriman';
+                        $data->nama_barang = $barang->nama_barang;
+                        $data->deskripsi = $barang->deskripsi_barang;
+                        $data->save();
+                    }
+                }
+
+        return response()->json([
+            'code' => 200,
+            'message' => 'Data updated successfully',
+            'data' => $data = DatabasePengemasan::all()
+        ], Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Database error',
+                'message' => $e->getMessage()
+            ], Response::HTTP_INTERNAL_SERVER_ERROR, [], JSON_PRETTY_PRINT);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Server error'], Response::HTTP_INTERNAL_SERVER_ERROR, [], JSON_PRETTY_PRINT);
+        }
+    }
+
 
     public function store(Request $request)
     {

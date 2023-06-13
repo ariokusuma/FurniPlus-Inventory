@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DatabasePesanan;
+use App\Models\DatabasePengemasan;
 use GuzzleHttp\Client;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Database\QueryException;
+use Symfony\Component\HttpFoundation\Response;
 
 class DatabasePesananController extends Controller
 {
@@ -48,6 +51,40 @@ class DatabasePesananController extends Controller
 
     }
 
+    public function updateStatus()
+    {
+        try {
+            // Copy Data from table pesanan > pengemasan
+            $tablePesanan = DatabasePesanan::select('id_pesanan', 'nama_pengguna', 'alamat', 'no_hp', 'jumlah_pesanan', 'status', 'resi')->get();
+
+            // Check if data is available
+            if ($tablePesanan->isEmpty()) {
+                return response()->json(['message' => 'tidak ada data, tabel Pesanan kosong'], Response::HTTP_NOT_FOUND, [], JSON_PRETTY_PRINT);
+            }
+
+            // Insert data into pengemasan table
+            foreach ($tablePesanan as $data) {
+                DatabasePengemasan::create($data->toArray());
+            }
+
+            return response()->json([
+                'code' => 200,
+                'message' => 'Data copied successfully',
+
+            ], Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+
+        } catch (QueryException $e) {
+            return response()->json([
+                'message' => 'Database error',
+
+                ], Response::HTTP_INTERNAL_SERVER_ERROR, [], JSON_PRETTY_PRINT);
+
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Server error'], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
     public function store(Request $request)
     {
         //
@@ -81,14 +118,7 @@ class DatabasePesananController extends Controller
                 'code' => '200',
                 'message' => 'Sukses',
                 'data_barang' => $dataPesanan
-            ]);
-        // return response()->json([
-        //     'data_barang' => $dataPesanan
-        // ]);
-        // return response()->json([
-        //     'message' => 'Success',
-        //     'data_pesanan' => $pesanan
-        // ], 200);
+            ], 200, [], JSON_PRETTY_PRINT);
     }
 
     public function showbyid($id_barang)

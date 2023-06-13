@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer('jumlah_pesanan');
             $table->string('status');
             $table->integer('resi')->nullable();
-            $table->string('nama_barang');
-            $table->string('deskripsi');
+            $table->string('nama_barang')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Http;
 
 class DatabasePesananController extends Controller
 {
-    public function index () // /pesanan
+    public function fetch () // /pesanan
     {
         //
         $client = new Client();
@@ -67,12 +67,36 @@ class DatabasePesananController extends Controller
             'data_pesanan' => $pesanan
         ]);
     }
-    public function show(DatabasePesanan $pesanan)
+    // public function show(DatabasePesanan $pesanan)
+    public function show()
     {
-        return response()->json([
-            'message' => 'Success',
-            'data_pesanan' => $pesanan
-        ], 200);
+        $dataPesanan = DatabasePesanan::all();
+            if ($dataPesanan->isEmpty()) {
+                return response()->json([
+                    'message' => 'No data found'
+                ]);
+            }
+
+            return response()->json([
+                'code' => '200',
+                'message' => 'Sukses',
+                'data_barang' => $dataPesanan
+            ]);
+        // return response()->json([
+        //     'data_barang' => $dataPesanan
+        // ]);
+        // return response()->json([
+        //     'message' => 'Success',
+        //     'data_pesanan' => $pesanan
+        // ], 200);
+    }
+
+    public function showbyid($id_barang)
+    {
+        $id_barang = DatabasePesanan::findorfail($id_barang);
+        if ($id_barang) {
+            return response()->json($id_barang);
+        }
     }
 
     /**

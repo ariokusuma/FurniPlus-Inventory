@@ -43,7 +43,9 @@ Route::DELETE('/data-barang/delete/{id}', [DatabaseBarangController::class, 'des
 //endpoint nomor 7
 // Route::apiResource('pesanan', DatabasePesananController::class); //No 5 & 6
 // Route::get('pesanan', DatabasePesananController::class, 'index'); //No 5 & 6
-Route::get('pesanan', [DatabasePesananController::class, 'index']);
+Route::get('pesanan', [DatabasePesananController::class, 'fetch']); //fetch data
+Route::GET('pesanan/show', [DatabasePesananController::class, 'show']);
+Route::get('pesanan/show/{id}', [DatabasePesananController::class, 'showbyid']);
 Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'update']); //No 7
 
 

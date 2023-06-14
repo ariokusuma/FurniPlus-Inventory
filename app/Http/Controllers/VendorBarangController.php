@@ -28,7 +28,10 @@ public function fetch ()
         $vendorBarang->save();
     }
 
-    return "Data vendor berhasil disimpan ke database";
+    return response()->json([
+        'message' => 'Data vendor berhasil disimpan ke database',
+        'message' => $dataJson,
+    ], 200, [], JSON_PRETTY_PRINT);
 }
 
     /**
@@ -50,9 +53,21 @@ public function fetch ()
     /**
      * Display the specified resource.
      */
-    public function show(VendorBarang $vendorBarang)
+    public function show()
     {
-        //
+        $dataPesanan = VendorBarang::all();
+
+        if ($dataPesanan->isEmpty()) {
+            return response()->json([
+                'message' => 'No data found'
+            ]);
+        }
+
+        return response()->json([
+            'code' => '200',
+            'message' => 'Sukses',
+            'data_barang' => $dataPesanan
+        ], 200, [], JSON_PRETTY_PRINT);
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\DatabaseBarangController;
 use App\Http\Controllers\DatabasePesananController;
 use App\Http\Controllers\DatabasePengemasanController;
 use App\Http\Controllers\DatabaseRefundController;
+use App\Http\Controllers\VendorBarangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,20 +43,10 @@ Route::DELETE('/data-barang/delete/{id}', [DatabaseBarangController::class, 'des
 |--------------------------------------------------------------------------
 */
 //endpoint nomor 7
-// Route::apiResource('pesanan', DatabasePesananController::class); //No 5 & 6
-// Route::get('pesanan', DatabasePesananController::class, 'index'); //No 5 & 6
 Route::get('pesanan', [DatabasePesananController::class, 'fetch']); //fetch data
 Route::GET('pesanan/show', [DatabasePesananController::class, 'show']);
 Route::get('pesanan/show/{id}', [DatabasePesananController::class, 'showbyid']);
 Route::GET('updateStatus', [DatabasePesananController::class, 'updateStatus']); //resi
-
-
-// Route::GET('fill', [DatabasePesananController::class, 'fillNullData']);
-
-// update data resi
-// Route::PUT('pesanan/update/{id_pesanan}', [DatabasePesananController::class, 'update']); //No 7
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -75,10 +66,10 @@ Route::GET('pengiriman/kirim/{id}', [DatabasePengemasanController::class, 'pengi
 |--------------------------------------------------------------------------
 */
 Route::get('refund', [DatabaseRefundController::class, 'fetch']); //fetch data
+Route::get('refundfix', [DatabaseRefundController::class, 'refundfix']); //copy data, null
 Route::get('refund2', [DatabaseRefundController::class, 'fillNullData']); //fetch data
 Route::GET('refund/show', [DatabaseRefundController::class, 'show']); //show all data
 Route::get('refund/show/{id}', [DatabaseRefundController::class, 'showbyid']);
-Route::get('refundfix', [DatabaseRefundController::class, 'refundfix']); //copy data, null
 
 
 Route::get('refund/data', [DatabaseRefundController::class, 'refundbarang']); //copy data, null
@@ -89,5 +80,6 @@ Route::get('refund/data', [DatabaseRefundController::class, 'refundbarang']); //
 |--------------------------------------------------------------------------
 */
 Route::get('vendor', [VendorBarangController::class, 'fetch']); //fetch data
+Route::get('vendor/show', [VendorBarangController::class, 'show']); //fetch data
 
 

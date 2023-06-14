@@ -19,11 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('nama_pengguna');
             $table->string('alamat');
-            $table->string('no_hp');
+            $table->integer('no_hp');
             $table->integer('jumlah_pesanan');
             $table->integer('total_harga');
             $table->string('status');
-            $table->string('resi')->nullable();
+            $table->integer('resi')->nullable();
             $table->timestamps();
         });
     }

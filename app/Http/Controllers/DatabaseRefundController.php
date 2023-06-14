@@ -157,7 +157,7 @@ class DatabaseRefundController extends Controller
 
     public function show()
     {
-        $dataRefund = DatabaseRefund::all();
+        $dataRefund = DatabaseRefund2::all();
             if ($dataRefund->isEmpty()) {
                 return response()->json([
                     'message' => 'No data found'

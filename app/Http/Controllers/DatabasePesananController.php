@@ -118,7 +118,7 @@ class DatabasePesananController extends Controller
 
                 foreach ($pengemasanData as $data) {
                     $pesanan = DatabasePesanan::find($data->id_pesanan);
-                    dd($pesanan);
+                    // dd($pesanan);
                     $barang = DatabaseBarang::find($pesanan->id_barang);
 
                     if ($pesanan && $barang) {
